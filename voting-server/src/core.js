@@ -15,13 +15,14 @@ export function next(state) {
     });
 }
 
-export function vote(state, entry) {
-    return state.updateIn(
-            ['vote', 'tally', entry],
+export function vote(voteState, entry) {
+    return voteState.updateIn(
+            ['tally', entry],
             0,
-            c => c + 1
+            tally => tally + 1
 );
 }
+
 function getWinners(vote) {
     if (!vote) return [];
     const [a, b] = vote.get('pair');
